@@ -169,30 +169,57 @@ body {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.level-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+.level-slider-container {
+  display: flex;
+  align-items: center;
   width: 100%;
   max-width: 1000px;
-  overflow-y: auto;
-  padding-bottom: 2rem;
-  /* Custom scrollbar */
+  position: relative;
+  justify-content: center;
 }
 
-.level-grid::-webkit-scrollbar {
-  width: 8px;
+.scroll-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 50px;
+  height: 80px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+  flex-shrink: 0;
 }
-.level-grid::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }
-.level-grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+
+.scroll-btn:active {
+  transform: scale(0.9);
+}
+
+.level-slider {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 10px;
+  width: calc(100% - 120px);
+  margin: 0 10px;
+  scrollbar-width: none;
+}
+
+.level-slider::-webkit-scrollbar {
+  display: none;
 }
 
 .level-card {
+  flex: 0 0 auto;
+  width: 280px;
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -228,6 +255,12 @@ body {
   align-items: center;
 }
 
+.difficulty-badge-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .difficulty-badge {
   padding: 4px 10px;
   border-radius: 20px;
@@ -235,6 +268,10 @@ body {
   font-weight: 700;
   color: #0a0e1a;
   background: #fff;
+}
+
+.difficulty-face svg {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .stars {

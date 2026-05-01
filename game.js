@@ -12,7 +12,7 @@ const hud = document.getElementById('hud');
 const hudAttempt = document.getElementById('hudAttempt');
 const hudProgress = document.getElementById('hudProgress');
 const hudLevelName = document.getElementById('hudLevelName');
-const levelGrid = document.getElementById('levelGrid');
+const levelSlider = document.getElementById('levelSlider');
 
 // --- Game State ---
 let state = 'MENU'; // MENU, SELECT, PLAYING, DEAD, COMPLETE
@@ -568,30 +568,82 @@ function setState(newState) {
   }
 }
 
+// Function to generate the SVG face
+function getDifficultyFace(difficulty) {
+  let color = '';
+  let facePath = '';
+  
+  switch(difficulty) {
+    case 'Easy': 
+      color = '#34d399'; 
+      facePath = '<path d="M 12 24 Q 20 30 28 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>';
+      break;
+    case 'Normal': 
+      color = '#fbbf24'; 
+      facePath = '<line x1="12" y1="26" x2="28" y2="26" stroke="#000" stroke-width="3" stroke-linecap="round"/>';
+      break;
+    case 'Hard': 
+      color = '#f97316'; 
+      facePath = '<path d="M 12 28 Q 20 22 28 28" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/>';
+      break;
+    case 'Harder': 
+      color = '#ef4444'; 
+      facePath = '<path d="M 12 28 Q 20 22 28 28" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/><line x1="10" y1="12" x2="16" y2="14" stroke="#000" stroke-width="2"/><line x1="30" y1="12" x2="24" y2="14" stroke="#000" stroke-width="2"/>';
+      break;
+    case 'Insane': 
+      color = '#db2777'; 
+      facePath = '<path d="M 12 28 Q 20 20 28 28" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/><circle cx="14" cy="16" r="4" fill="#000"/><circle cx="26" cy="16" r="4" fill="#000"/><line x1="8" y1="10" x2="16" y2="14" stroke="#000" stroke-width="3"/><line x1="32" y1="10" x2="24" y2="14" stroke="#000" stroke-width="3"/>';
+      break;
+    case 'Demon': 
+      color = '#7f1d1d'; 
+      facePath = '<path d="M 12 28 Q 20 18 28 28" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"/><path d="M 14 16 L 16 10 L 18 16 Z M 22 16 L 24 10 L 26 16 Z" fill="#000"/><circle cx="14" cy="18" r="3" fill="#fff"/><circle cx="26" cy="18" r="3" fill="#fff"/>';
+      break;
+    default: 
+      color = '#9ca3af';
+      facePath = '<line x1="12" y1="26" x2="28" y2="26" stroke="#000" stroke-width="3" stroke-linecap="round"/>';
+  }
+  
+  return `<div class="difficulty-face">
+    <svg width="40" height="40" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="${color}" stroke="#fff" stroke-width="2"/>
+      ${difficulty !== 'Insane' && difficulty !== 'Demon' ? '<circle cx="14" cy="16" r="3" fill="#000"/><circle cx="26" cy="16" r="3" fill="#000"/>' : ''}
+      ${facePath}
+    </svg>
+  </div>`;
+}
+
+// --- Menu Functions ---
 function populateLevelSelect() {
-  levelGrid.innerHTML = '';
-  LEVELS.forEach(level => {
-    const isCompleted = localStorage.getItem(`gd_level_${level.id}`) === 'completed';
+  levelSlider.innerHTML = '';
+  
+  LEVELS.forEach((level) => {
     const card = document.createElement('div');
     card.className = 'level-card';
-    card.style.borderColor = DIFF_COLORS[level.diff];
+    
+    const isCompleted = localStorage.getItem(`gd_level_${level.id}`) === 'completed';
+    if (isCompleted) {
+      card.style.borderColor = '#00ff87';
+      card.style.background = 'rgba(0, 255, 135, 0.05)';
+    }
     
     card.innerHTML = `
       <div class="level-number">LEVEL ${level.id}</div>
       <div class="level-name">${level.name}</div>
       <div class="level-stats">
-        <span class="difficulty-badge" style="color: ${DIFF_COLORS[level.diff]}">${level.diff}</span>
-        <span class="stars">${'★'.repeat(level.stars)}</span>
+        <div class="difficulty-badge-container">
+          ${getDifficultyFace(level.diff)}
+          <span class="difficulty-badge">${level.diff}</span>
+        </div>
+        <div class="stars">★ ${level.stars} ${isCompleted ? '✓' : ''}</div>
       </div>
-      ${isCompleted ? '<div style="color:#00ff87; font-size:0.8rem; margin-top:5px; text-align:right;">✓ COMPLETED</div>' : ''}
     `;
     
     card.addEventListener('click', () => {
-      AudioSys.init(); // Init audio on user gesture
+      AudioSys.init();
       loadLevel(level.id);
     });
     
-    levelGrid.appendChild(card);
+    levelSlider.appendChild(card);
   });
 }
 
@@ -674,6 +726,14 @@ document.getElementById('resumeBtn').addEventListener('click', () => {
 document.getElementById('deathQuitBtn').addEventListener('click', () => {
   AudioSys.stopMusic();
   setState('SELECT');
+});
+
+document.getElementById('scrollLeftBtn').addEventListener('click', () => {
+  levelSlider.scrollBy({ left: -320, behavior: 'smooth' });
+});
+
+document.getElementById('scrollRightBtn').addEventListener('click', () => {
+  levelSlider.scrollBy({ left: 320, behavior: 'smooth' });
 });
 
 // Resize handler
