@@ -604,7 +604,7 @@ function getDifficultyFace(difficulty) {
   }
   
   return `<div class="difficulty-face">
-    <svg width="40" height="40" viewBox="0 0 40 40">
+    <svg width="50" height="50" viewBox="0 0 40 40">
       <circle cx="20" cy="20" r="18" fill="${color}" stroke="#fff" stroke-width="2"/>
       ${difficulty !== 'Insane' && difficulty !== 'Demon' ? '<circle cx="14" cy="16" r="3" fill="#000"/><circle cx="26" cy="16" r="3" fill="#000"/>' : ''}
       ${facePath}
@@ -621,10 +621,6 @@ function populateLevelSelect() {
     card.className = 'level-card';
     
     const isCompleted = localStorage.getItem(`gd_level_${level.id}`) === 'completed';
-    if (isCompleted) {
-      card.style.borderColor = '#00ff87';
-      card.style.background = 'rgba(0, 255, 135, 0.05)';
-    }
     
     card.innerHTML = `
       <div class="level-number">LEVEL ${level.id}</div>
