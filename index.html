@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geometry Dash - Web Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="A lightweight Geometry Dash clone built with HTML5 Canvas and vanilla JavaScript.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Game Canvas -->
+  <canvas id="gameCanvas" width="800" height="480"></canvas>
+
+  <!-- In-Game HUD -->
+  <div id="hud">
+    <div class="hud-text" id="hudAttempt">Attempt 1</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="hudProgress"></div>
+    </div>
+    <div class="hud-text" id="hudLevelName">Stereo Madness</div>
+  </div>
+
+  <!-- Main Menu Overlay -->
+  <div id="mainMenu" class="overlay active">
+    <div class="title-container">
+      <h1>Geometry Dash</h1>
+      <div class="subtitle">HTML5 Edition</div>
+    </div>
+    <button id="playBtn" class="play-btn">
+      <svg viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Level Select Overlay -->
+  <div id="levelSelect" class="overlay">
+    <div class="level-header">
+      <button id="backBtn" class="back-btn">← Back</button>
+      <div style="color:white; font-size: 1.5rem; font-weight:700;">Select Level</div>
+      <div style="width: 80px;"></div> <!-- spacer -->
+    </div>
+    <div id="levelGrid" class="level-grid">
+      <!-- Level cards injected by JS -->
+    </div>
+  </div>
+
+  <!-- Death Screen Overlay -->
+  <div id="deathScreen" class="overlay">
+    <h2>Level Failed</h2>
+    <div class="attempt-text" id="deathAttempt">Attempt 1</div>
+    <div class="action-text">Click or Press Space to Restart</div>
+  </div>
+
+  <!-- Level Complete Overlay -->
+  <div id="completeScreen" class="overlay">
+    <h2>Level Complete!</h2>
+    <div class="stats-card">
+      <p id="completeLevelName">Stereo Madness</p>
+      <p id="completeAttempts">Attempts: 1</p>
+      <p id="completeJumps">Jumps: 0</p>
+    </div>
+    <button id="menuReturnBtn" class="back-btn" style="padding: 15px 30px; font-size: 1.5rem;">Continue</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="levels.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
