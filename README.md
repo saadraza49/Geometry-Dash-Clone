@@ -1,6 +1,6 @@
 # Geometry Dash Clone
 
-A faithful web-based clone of the popular rhythm-based platformer game, Geometry Dash. This project replicates the core gameplay mechanics including cube jumping, obstacle avoidance, ship mode, and multiple levels with increasing difficulty.
+A faithful web-based clone of the popular rhythm-based platformer game, Geometry Dash. This project replicates the core gameplay mechanics including cube jumping, obstacle avoidance, ship mode, and multiple levels with increasing difficulty. And a little disclaimer that these levels are hard so...
 
 ## Features
 
