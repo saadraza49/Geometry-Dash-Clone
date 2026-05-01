@@ -621,6 +621,8 @@ function handleInput(e) {
   if (state === 'PLAYING') {
     player.jump();
   } else if (state === 'DEAD') {
+    if (e.target && e.target.id === 'deathQuitBtn') return;
+    
     attempts++;
     resetAttempt();
     setState('PLAYING');

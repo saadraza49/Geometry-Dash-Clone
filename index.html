@@ -25,7 +25,6 @@
   <div id="mainMenu" class="overlay active">
     <div class="title-container">
       <h1 class="gd-title">Geometry Dash</h1>
-      <div class="subtitle">HTML5 Edition</div>
     </div>
     <div class="menu-buttons">
       <button id="playBtn" class="gd-play-btn">
@@ -41,8 +40,12 @@
       <div style="color:white; font-size: 1.5rem; font-weight:700;">Select Level</div>
       <div style="width: 80px;"></div> <!-- spacer -->
     </div>
-    <div id="levelGrid" class="level-grid">
-      <!-- Level cards injected by JS -->
+    <div class="level-slider-container">
+      <button id="scrollLeftBtn" class="scroll-btn">◄</button>
+      <div id="levelSlider" class="level-slider">
+        <!-- Level cards injected by JS -->
+      </div>
+      <button id="scrollRightBtn" class="scroll-btn">►</button>
     </div>
   </div>
 
