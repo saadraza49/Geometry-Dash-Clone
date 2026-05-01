@@ -604,7 +604,7 @@ function getDifficultyFace(difficulty) {
   }
   
   return `<div class="difficulty-face">
-    <svg width="50" height="50" viewBox="0 0 40 40">
+    <svg width="80" height="80" viewBox="0 0 40 40">
       <circle cx="20" cy="20" r="18" fill="${color}" stroke="#fff" stroke-width="2"/>
       ${difficulty !== 'Insane' && difficulty !== 'Demon' ? '<circle cx="14" cy="16" r="3" fill="#000"/><circle cx="26" cy="16" r="3" fill="#000"/>' : ''}
       ${facePath}
@@ -725,11 +725,11 @@ document.getElementById('deathQuitBtn').addEventListener('click', () => {
 });
 
 document.getElementById('scrollLeftBtn').addEventListener('click', () => {
-  levelSlider.scrollBy({ left: -320, behavior: 'smooth' });
+  levelSlider.scrollBy({ left: -480, behavior: 'smooth' });
 });
 
 document.getElementById('scrollRightBtn').addEventListener('click', () => {
-  levelSlider.scrollBy({ left: 320, behavior: 'smooth' });
+  levelSlider.scrollBy({ left: 480, behavior: 'smooth' });
 });
 
 // Resize handler

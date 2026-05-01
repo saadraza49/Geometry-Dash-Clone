@@ -204,7 +204,7 @@ body {
 .level-slider {
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 2.5rem;
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 1rem 10px;
@@ -219,16 +219,16 @@ body {
 
 .level-card {
   flex: 0 0 auto;
-  width: 340px;
+  width: 450px;
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
   cursor: pointer;
   transition: transform 0.2s, border-color 0.2s, background 0.2s;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .level-card:hover {
@@ -237,13 +237,13 @@ body {
 }
 
 .level-number {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 700;
 }
 
 .level-name {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   color: white;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -262,9 +262,9 @@ body {
 }
 
 .difficulty-badge {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 1rem;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #0a0e1a;
   background: #fff;
@@ -276,7 +276,7 @@ body {
 
 .stars {
   color: #fbbf24;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
