@@ -24,14 +24,14 @@
   <!-- Main Menu Overlay -->
   <div id="mainMenu" class="overlay active">
     <div class="title-container">
-      <h1>Geometry Dash</h1>
+      <h1 class="gd-title">Geometry Dash</h1>
       <div class="subtitle">HTML5 Edition</div>
     </div>
-    <button id="playBtn" class="play-btn">
-      <svg viewBox="0 0 24 24">
-        <path d="M8 5v14l11-7z" />
-      </svg>
-    </button>
+    <div class="menu-buttons">
+      <button id="playBtn" class="gd-play-btn">
+        <div class="play-triangle"></div>
+      </button>
+    </div>
   </div>
 
   <!-- Level Select Overlay -->
@@ -51,6 +51,16 @@
     <h2>Level Failed</h2>
     <div class="attempt-text" id="deathAttempt">Attempt 1</div>
     <div class="action-text">Click or Press Space to Restart</div>
+    <button id="deathQuitBtn" class="gd-quit-btn mt-4">Return to Levels</button>
+  </div>
+
+  <!-- Pause Screen Overlay -->
+  <div id="pauseScreen" class="overlay">
+    <h2>PAUSED</h2>
+    <div class="pause-menu-buttons">
+      <button id="resumeBtn" class="gd-btn gd-btn-green">Resume</button>
+      <button id="pauseQuitBtn" class="gd-btn gd-btn-red">Quit to Levels</button>
+    </div>
   </div>
 
   <!-- Level Complete Overlay -->

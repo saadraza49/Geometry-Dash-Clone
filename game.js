@@ -7,6 +7,7 @@ const mainMenu = document.getElementById('mainMenu');
 const levelSelect = document.getElementById('levelSelect');
 const deathScreen = document.getElementById('deathScreen');
 const completeScreen = document.getElementById('completeScreen');
+const pauseScreen = document.getElementById('pauseScreen');
 const hud = document.getElementById('hud');
 const hudAttempt = document.getElementById('hudAttempt');
 const hudProgress = document.getElementById('hudProgress');
@@ -543,6 +544,7 @@ function hideAllOverlays() {
   levelSelect.classList.remove('active');
   deathScreen.classList.remove('active');
   completeScreen.classList.remove('active');
+  pauseScreen.classList.remove('active');
   hud.style.opacity = '0';
 }
 
@@ -561,6 +563,8 @@ function setState(newState) {
     document.getElementById('deathAttempt').innerText = `Attempt ${attempts}`;
   } else if (state === 'COMPLETE') {
     completeScreen.classList.add('active');
+  } else if (state === 'PAUSE') {
+    pauseScreen.classList.add('active');
   }
 }
 
@@ -593,6 +597,21 @@ function populateLevelSelect() {
 
 // --- Input Handling ---
 function handleInput(e) {
+  if (e.type === 'keydown' && e.code === 'Escape') {
+    if (state === 'PLAYING') {
+      setState('PAUSE');
+      if (AudioSys.ctx && AudioSys.ctx.state === 'running') {
+        AudioSys.ctx.suspend();
+      }
+    } else if (state === 'PAUSE') {
+      setState('PLAYING');
+      if (AudioSys.ctx && AudioSys.ctx.state === 'suspended') {
+        AudioSys.ctx.resume();
+      }
+    }
+    return;
+  }
+
   if (e.type === 'keydown' && e.code !== 'Space' && e.code !== 'ArrowUp') return;
   
   if (e.type === 'keydown' || e.type === 'mousedown' || e.type === 'touchstart') {
@@ -636,6 +655,23 @@ document.getElementById('backBtn').addEventListener('click', () => {
 document.getElementById('menuReturnBtn').addEventListener('click', () => {
   setState('SELECT');
   populateLevelSelect(); // Refresh completion status
+});
+
+document.getElementById('pauseQuitBtn').addEventListener('click', () => {
+  AudioSys.stopMusic();
+  setState('SELECT');
+});
+
+document.getElementById('resumeBtn').addEventListener('click', () => {
+  setState('PLAYING');
+  if (AudioSys.ctx && AudioSys.ctx.state === 'suspended') {
+    AudioSys.ctx.resume();
+  }
+});
+
+document.getElementById('deathQuitBtn').addEventListener('click', () => {
+  AudioSys.stopMusic();
+  setState('SELECT');
 });
 
 // Resize handler
