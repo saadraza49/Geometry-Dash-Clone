@@ -4,7 +4,7 @@ A faithful web-based clone of the popular rhythm-based platformer game, Geometry
 
 ## Features
 
-- **Multiple Levels**: Contains all original 8 levels (Stereo Madness to Clubstep) with accurate obstacle placement.
+- **Multiple Levels**: Contains all original levels (Stereo Madness to Fingerdash) with accurate obstacle placement.
 - **Multiple Modes**:
   - **Cube Mode**: Standard jumping gameplay.
   - **Ship Mode**: Fly through the level avoiding obstacles.
