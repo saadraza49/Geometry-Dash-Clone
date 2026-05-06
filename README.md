@@ -27,7 +27,7 @@ A faithful web-based clone of the popular rhythm-based platformer game, Geometry
 ## Getting Started
 
 ### Prerequisites
-- A modern web browser (Chrome, Firefox, Edge, Safari).
+- A web browser (Chrome, Firefox, Edge, Safari).
 - **Live Server extension** for VS Code recommended for optimal audio and file handling.
 
 ### Installation
